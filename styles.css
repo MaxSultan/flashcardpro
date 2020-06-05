@@ -78,3 +78,9 @@ body{
     font-size: 140px;
     transform: rotate(90deg);
 }
+
+button{
+    margin-top: 75px;
+    margin-left: 25px;
+    margin-right: 25px;
+}

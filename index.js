@@ -17,14 +17,24 @@ let state = {
 }
 
 function right(){
+    if (state.cardNum <= 10){
     state.clicked = false;
     state.cardNum++; 
+} else {
+    state.clicked = false;
+    state.cardNum = (state.cardNum + 1) % 10;
+}
     render();
 }
 
 function left(){
+    if (state.cardNum <= 0){
     state.clicked = false;
-    state.cardNum--;
+    state.cardNum = (state.cardNum - 1) % 10;
+    } else {
+     state.clicked = false;
+     state.cardNum--;
+    }
     render();
 }
 
@@ -43,10 +53,23 @@ function whichSide(){
     return !clicked ?  state.deck[state.cardNum].front :  state.deck[state.cardNum].back
 }
 
+function addCard(list){
+    list.push(prompt());
+}
+
+function deleteCard(){
+    state.deck.splice(state.cardNum, 1);
+    state.cardNum++;
+    render();
+}
+
 function HtmlStringify(){
     const { deck, cardNum, clicked } = state
     return `
     <div id="card" onclick='flip()'>${whichSide()}</div>
+    <button onclick='editCard()'>Edit Card</button>
+    <button onclick='addCard(state)'>Add Card</button>
+    <button onclick="deleteCard()">Delete Card</button>
     `
 }
 
